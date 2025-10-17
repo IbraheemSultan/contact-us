@@ -69,7 +69,7 @@
                 title: "Message Sent Successfully!",
                 text: "We’ll get back to you soon.",
                 showConfirmButton: false,
-                timer: 1000
+                timer: 500
             });
             contactForm.reset();
         })
