@@ -71,73 +71,11 @@
         </div>
     </section>
 </body>
-<script>
-    const contactForm = document.forms["contactForm"];
-    const nameField = contactForm["name"];
-    const emailField = contactForm["email"];
-    const subjectField = contactForm["subject"];
-    const messageField = contactForm["message"];
-
-    // Email pattern
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    contactForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-
-        // Reset old error styles
-        [nameField, emailField, subjectField, messageField].forEach(f => {
-            f.classList.remove("border-red-500");
-        });
-
-        // Trim values
-        const name = nameField.value.trim();
-        const email = emailField.value.trim();
-        const subject = subjectField.value.trim();
-        const message = messageField.value.trim();
-
-        // Validation
-        if (!name || !email || !subject || !message) {
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Please fill out all fields!",
-            });
-
-            [nameField, emailField, subjectField, messageField].forEach(f => {
-                if (!f.value.trim()) f.classList.add("border-red-500");
-            });
-
-            return; // stop here
-        }
-
-        if (!emailPattern.test(email)) {
-            Swal.fire({
-                icon: "error",
-                title: "Invalid Email",
-                text: "Please enter a valid email address!",
-            });
-            emailField.classList.add("border-red-500");
-            return;
-        }
-
-        // Success
-        Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "Message Sent Successfully!",
-            text: "We’ll get back to you soon.",
-            showConfirmButton: false,
-            timer: 2000
-        });
-
-        // Reset after short delay
-        setTimeout(() => {
-            contactForm.reset();
-        }, 2000);
-    });
-</script>
-
-
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+<script src="script.js"></script>
+
 
 </html>
