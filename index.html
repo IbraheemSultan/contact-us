@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get In Touch </title>
+    <link rel="stylesheet" href="dist/output.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body class="bg-gradient-to-br bg-no-repeat  from-blue-700 to-purple-700 text-white  ">
+    <section>
+        <div class="conatiner w-9/12 md:w-7/12 lg:w-5/12 m-auto text-center py-10 ">
+            <div class="head">
+                <h1 class="text-5xl font-bold ">Get in Touch </h1>
+                <p class=" text-gray-200  text-xl mt-4">We'd love to hear form you. Send us a message and we'll respond
+                    as soon as possible.</p>
+            </div>
+
+            <div class="formBox bg-white mt-7  py-15 px-10 rounded-2xl 
+             text-gray-700">
+
+                <form action="" name="contactForm" id="contactForm" class="flex flex-col gap-10">
+                    <div class="relative">
+                        <input
+                            class="focus:border-blue-700 border placeholder-transparent peer px-4 border-gray-400 rounded-xl w-full outline-0  focus:outline-blue-700 focus:outline-1 duration-700  focus:shadow-[0_0_35px_rgba(0,0,0,0.25)] py-4 focus:-translate-y-1"
+                            placeholder="Full Name" type="text" id="name" maxlength="35">
+                        <label
+                            class="absolute left-4 top-4 text-xl duration-500 peer-focus:-translate-y-12 peer-focus:text-blue-700 peer-not-placeholder-shown:-translate-y-12 "
+                            for="name">Full Name</label>
+                    </div>
+                    <div class="relative">
+                        <input
+                            class="focus:border-blue-700 border placeholder-transparent peer px-4 border-gray-400 rounded-xl w-full outline-0  focus:outline-blue-700 focus:outline-1 duration-700  focus:shadow-[0_0_35px_rgba(0,0,0,0.25)] py-4 focus:-translate-y-1  "
+                            type="email" placeholder="Email Address" name="email" id="email">
+                        <label
+                            class="absolute left-4 top-4 text-xl duration-500 peer-focus:-translate-y-12 peer-focus:text-blue-700 peer-not-placeholder-shown:-translate-y-12 "
+                            for="email">Email Address</label>
+                    </div>
+                    <div class="relative">
+                        <input
+                            class="focus:border-blue-700 border placeholder-transparent peer px-4 border-gray-400 rounded-xl w-full outline-0  focus:outline-blue-700 focus:outline-1 duration-700  focus:shadow-[0_0_35px_rgba(0,0,0,0.25)] py-4 focus:-translate-y-1  "
+                            type="text" name="subject" placeholder="Subject" id="subject" maxlength="40">
+                        <label
+                            class="absolute left-4 top-4 text-xl duration-500 peer-focus:-translate-y-12 peer-focus:text-blue-700 peer-not-placeholder-shown:-translate-y-12 "
+                            for="subject">subject</label>
+                    </div>
+                    <div class="relative">
+                        <textarea name="message" id="message"
+                            class="h-40 focus:border-blue-700 border placeholder-transparent peer px-4 border-gray-400 rounded-xl w-full outline-0  focus:outline-blue-700 focus:outline-1 duration-700  focus:shadow-[0_0_35px_rgba(0,0,0,0.25)] py-4 focus:-translate-y-1  "
+                            placeholder="Your Message"></textarea>
+                        <label
+                            class="absolute left-4 top-4 text-xl duration-500 peer-focus:-translate-y-12 peer-focus:text-blue-700 peer-not-placeholder-shown:-translate-y-12 "
+                            for="message">Your Message</label>
+                    </div>
+                    <button type="submit"
+                        class="bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl text-xl py-4 text-white font-bold hover:from-blue-700 hover:to-purple-700 cursor-pointer hover:-translate-y-1 duration-500">Send
+                        Message <i class="fas fa-paper-plane "></i></button>
+                </form>
+
+            </div>
+
+            <div class="dataContact flex flex-col sm:flex-row justify-between mt-7 flex-wrap">
+                <p class="font-semibold"><i class="fas m-2 text-purple-400 fa-envelope"></i>hello@company.com</p>
+                <p class="font-semibold"><i class="fas m-2 text-purple-400 fa-phone"></i>+1 (555) 123-4567</p>
+                <p class="font-semibold"><i class="fa-solid m-2 text-purple-400 fa-location-dot"></i>New York, NY</p>
+            </div>
+        </div>
+    </section>
+</body>
+<script>
+    const contactForm = document.forms["contactForm"];
+    const nameField = contactForm["name"];
+    const emailField = contactForm["email"];
+    const subjectField = contactForm["subject"];
+    const messageField = contactForm["message"];
+
+    // Email pattern
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    contactForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        // Reset old error styles
+        [nameField, emailField, subjectField, messageField].forEach(f => {
+            f.classList.remove("border-red-500");
+        });
+
+        // Trim values
+        const name = nameField.value.trim();
+        const email = emailField.value.trim();
+        const subject = subjectField.value.trim();
+        const message = messageField.value.trim();
+
+        // Validation
+        if (!name || !email || !subject || !message) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Please fill out all fields!",
+            });
+
+            [nameField, emailField, subjectField, messageField].forEach(f => {
+                if (!f.value.trim()) f.classList.add("border-red-500");
+            });
+
+            return; // stop here
+        }
+
+        if (!emailPattern.test(email)) {
+            Swal.fire({
+                icon: "error",
+                title: "Invalid Email",
+                text: "Please enter a valid email address!",
+            });
+            emailField.classList.add("border-red-500");
+            return;
+        }
+
+        // Success
+        Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Message Sent Successfully!",
+            text: "We’ll get back to you soon.",
+            showConfirmButton: false,
+            timer: 2000
+        });
+
+        // Reset after short delay
+        setTimeout(() => {
+            contactForm.reset();
+        }, 2000);
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</html>

@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+.inputAnimation {
+  @apply border placeholder-transparent peer px-4 border-gray-400 rounded-xl w-full outline-0 
+         focus:outline-blue-700 focus:outline-1 duration-700 
+         focus:shadow-[0_0_35px_rgba(0,0,0,0.25)] py-4;
+}
